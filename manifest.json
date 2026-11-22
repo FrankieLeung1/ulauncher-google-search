@@ -13,7 +13,7 @@
       "type": "keyword",
       "name": "Google Search",
       "description": "Search from Google",
-      "default_value": "google"
+      "default_value": "i"
     }
   ]
 }

@@ -23,6 +23,7 @@
       "default_value": "google",
       "options": [
         {"value": "google", "text": "Google"},
+        {"value": "bing", "text": "Bing"},
         {"value": "duckduckgo", "text": "DuckDuckGo"},
         {"value": "startpage", "text": "Startpage"},
         {"value": "ecosia", "text": "Ecosia"}

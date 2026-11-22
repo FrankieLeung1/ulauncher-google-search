@@ -7,11 +7,11 @@ from src.functions import generate_url, GOOGLE_SEARCH_URL
 
 ICON_FILE = 'images/icon.png'
 
-def no_input_item():
+def no_input_item(engine_name='Google'):
     return [
         ExtensionResultItem(
             icon=ICON_FILE,
-            name='No input',
+            name=f'Search on {engine_name}',
             on_enter=DoNothingAction()
         )
     ]

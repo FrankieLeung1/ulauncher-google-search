@@ -19,14 +19,14 @@ class GoogleSearchExtension(Extension):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         query = event.get_argument() or str()
+        engine = extension.preferences.get('search_engine', DEFAULT_ENGINE) if extension else DEFAULT_ENGINE
+        engine_config = get_engine_config(engine)
 
         if len(query.strip()) == 0:
-            return RenderResultListAction(no_input_item())
+            return RenderResultListAction(no_input_item(engine_config['name']))
 
-        engine = extension.preferences.get('search_engine', DEFAULT_ENGINE) if extension else DEFAULT_ENGINE
-        search_url = get_engine_config(engine)['search_url']
         suggestions = list(dict.fromkeys([query] + search_suggestions(query, engine)))
-        return RenderResultListAction(show_suggestion_items(suggestions, search_url))
+        return RenderResultListAction(show_suggestion_items(suggestions, engine_config['search_url']))
 
 
 class ItemEnterEventListener(EventListener):

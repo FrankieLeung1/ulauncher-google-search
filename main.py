@@ -5,7 +5,7 @@ from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 
-from src.functions import search_from_google
+from src.functions import DEFAULT_ENGINE, get_engine_config, search_suggestions
 from src.items import no_input_item, show_suggestion_items
 
 class GoogleSearchExtension(Extension):
@@ -22,9 +22,11 @@ class KeywordQueryEventListener(EventListener):
 
         if len(query.strip()) == 0:
             return RenderResultListAction(no_input_item())
-            
-        suggestions = list(dict.fromkeys([query] + search_from_google(query)))
-        return RenderResultListAction(show_suggestion_items(suggestions))
+
+        engine = extension.preferences.get('search_engine', DEFAULT_ENGINE) if extension else DEFAULT_ENGINE
+        search_url = get_engine_config(engine)['search_url']
+        suggestions = list(dict.fromkeys([query] + search_suggestions(query, engine)))
+        return RenderResultListAction(show_suggestion_items(suggestions, search_url))
 
 
 class ItemEnterEventListener(EventListener):

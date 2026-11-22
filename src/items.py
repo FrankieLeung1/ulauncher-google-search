@@ -16,11 +16,11 @@ def no_input_item():
         )
     ]
 
-def show_suggestion_items(suggestions):
+def show_suggestion_items(suggestions, search_url=GOOGLE_SEARCH_URL):
     return [
         ExtensionResultItem(
             icon=ICON_FILE,
             name=suggestion,
-            on_enter=ExtensionCustomAction(generate_url(GOOGLE_SEARCH_URL, suggestion))
+            on_enter=ExtensionCustomAction(generate_url(search_url, suggestion))
         )
     for suggestion in suggestions]

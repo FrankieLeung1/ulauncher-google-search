@@ -18,32 +18,38 @@ def _parse_bing_suggestions(data):
 SEARCH_ENGINES = {
     'google': {
         'name': 'Google',
+        'home_url': 'https://www.google.com/',
         'suggest_url': 'https://www.google.com/complete/search?client=firefox&',
         'search_url': 'https://www.google.com/search?',
     },
     'bing': {
         'name': 'Bing',
+        'home_url': 'https://www.bing.com/',
         'suggest_url': 'https://api.bing.com/qsonhs.aspx?',
         'search_url': 'https://www.bing.com/search?',
         'parser': _parse_bing_suggestions,
     },
     'duckduckgo': {
         'name': 'DuckDuckGo',
+        'home_url': 'https://duckduckgo.com/',
         'suggest_url': 'https://duckduckgo.com/ac/?type=list&',
         'search_url': 'https://duckduckgo.com/?',
     },
     'startpage': {
         'name': 'Startpage',
+        'home_url': 'https://www.startpage.com/',
         'suggest_url': 'https://www.startpage.com/osuggestions?',
         'search_url': 'https://www.startpage.com/do/search?',
     },
     'ecosia': {
         'name': 'Ecosia',
+        'home_url': 'https://www.ecosia.org/',
         'suggest_url': 'https://ac.ecosia.org/autocomplete?type=list&',
         'search_url': 'https://www.ecosia.org/search?',
     },
 }
 
+GOOGLE_HOME_URL = SEARCH_ENGINES['google']['home_url']
 GOOGLE_SUGGESTION_URL = SEARCH_ENGINES['google']['suggest_url']
 GOOGLE_SEARCH_URL = SEARCH_ENGINES['google']['search_url']
 

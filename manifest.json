@@ -28,6 +28,20 @@
         {"value": "startpage", "text": "Startpage"},
         {"value": "ecosia", "text": "Ecosia"}
       ]
+    },
+    {
+      "id": "incognito",
+      "type": "checkbox",
+      "name": "Incognito",
+      "description": "Launch browser in a private/incognito window",
+      "default_value": false
+    },
+    {
+      "id": "show_suggestions",
+      "type": "checkbox",
+      "name": "Show suggestions",
+      "description": "Fetch autocomplete suggestions (adds network delay before Enter updates)",
+      "default_value": true
     }
   ]
 }

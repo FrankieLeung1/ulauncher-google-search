@@ -1,18 +1,17 @@
 from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
-from ulauncher.api.shared.action.DoNothingAction import DoNothingAction
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 
-from src.functions import generate_url, GOOGLE_SEARCH_URL
+from src.functions import generate_url, GOOGLE_HOME_URL, GOOGLE_SEARCH_URL
 
 
 ICON_FILE = 'images/icon.png'
 
-def no_input_item(engine_name='Google'):
+def no_input_item(engine_name='Google', home_url=GOOGLE_HOME_URL):
     return [
         ExtensionResultItem(
             icon=ICON_FILE,
             name=f'Search on {engine_name}',
-            on_enter=DoNothingAction()
+            on_enter=ExtensionCustomAction(home_url)
         )
     ]
 

@@ -23,17 +23,20 @@ class KeywordQueryEventListener(EventListener):
         engine_config = get_engine_config(engine)
 
         if len(query.strip()) == 0:
-            return RenderResultListAction(no_input_item(engine_config['name']))
+            return RenderResultListAction(no_input_item(engine_config['name'], engine_config['home_url']))
 
-        suggestions = list(dict.fromkeys([query] + search_suggestions(query, engine)))
+        show_suggestions = bool(extension.preferences.get('show_suggestions', True)) if extension else True
+        suggestions = list(dict.fromkeys([query] + search_suggestions(query, engine))) if show_suggestions else [query]
         return RenderResultListAction(show_suggestion_items(suggestions, engine_config['search_url']))
 
 
 class ItemEnterEventListener(EventListener):
     def on_event(self, event, extension):
         url = event.get_data()
+        incognito = bool(extension.preferences.get('incognito', False)) if extension else False
+        flag = '--private-window' if incognito else '--blank-window'
         subprocess.Popen(
-            ['zen-browser', '--blank-window', url],
+            ['zen-browser', flag, url],
             start_new_session=True,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
